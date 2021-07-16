@@ -43,6 +43,7 @@ body {
     
 * { box-sizing: border-box; }
 
+/*------UC2-----*/
 .form-content{
     min-height: calc(100% - 80px);
     background-color: #f7f7f7;
@@ -102,4 +103,23 @@ label{
     border-radius: 4px;
     resize: vertical;
 }
+
+/*-------UC3-----*/
+.profile-radio-content {
+    display: flex;
+    flex-direction: row;
+ }
+    
+.profile-radio-content > label {
+    display: flex;
+    flex-direction: row;
+    align-items : center;
+ }
+    
+.profile {
+    width: 40px;
+    border-radius:50%;
+    margin-left: 12px;
+ }   
+    
     
