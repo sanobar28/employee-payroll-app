@@ -35,6 +35,22 @@ const save = () => {
     }
 }
 
+/**
+ * UC12 to save the Employee Payroll Object to Local Storage.
+ */
+
+function createAndUpadateStorage(employeePayrollData) {
+    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+    if (employeePayrollList != undefined) {
+        employeePayrollList.push(employeePayrollData);
+    } else {
+        employeePayrollList = [employeePayrollData]
+    }
+    alert(employeePayrollList());
+    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList))
+}
+
+//UC11 create object continued
 const createEmpoyeePayroll = () => {
     let employeePayrollData = new EmployeePayrollData();
     try {
