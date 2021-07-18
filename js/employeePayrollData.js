@@ -59,6 +59,10 @@ class EmployeePayrollData {
     }
     set startDate(startDate) {
         this._startDate = startDate;
+        let date = new Date();
+        if (startDate < date) {
+            this._startDate = startDate;
+        } else throw "Invalid Date";
     }
 
     //method
