@@ -36,7 +36,9 @@ function createInnerHtml() {
     document.querySelector('#display').innerHTML = innerHtml
 }
 
-//To view Employee Payroll details in a Tabular Format from JSON Object.
+/**
+ * UC16 To view Employee Payroll details in a Tabular Format from JSON Object.
+ */
 
 const createEmployeePayrollJSON = () => {
     let empPayrollListLocal = [
