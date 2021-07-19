@@ -194,7 +194,14 @@ error-output {
 
 @media only screen and (max-width: 600px) {
     .form {
+        margin-left: 0px;
+        margin-right: 0px;
         margin-top: 10px;
+        width: 100%;
+    }
+
+    .form-content {
+        flex-flow: wrap;
     }
 
     .row {
