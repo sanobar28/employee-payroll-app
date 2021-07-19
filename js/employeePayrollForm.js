@@ -30,6 +30,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 const save = () => {
     try {
         let employeePayrollData = createEmployeePayroll();
+        createAndUpadateStorage(employeePayrollData);
     } catch (e) {
         return;
     }
@@ -46,12 +47,12 @@ function createAndUpadateStorage(employeePayrollData) {
     } else {
         employeePayrollList = [employeePayrollData]
     }
-    alert(employeePayrollList());
+    alert(employeePayrollList);
     localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList))
 }
 
 //UC11 create object continued
-const createEmpoyeePayroll = () => {
+const createEmployeePayroll = () => {
     let employeePayrollData = new EmployeePayrollData();
     try {
         employeePayrollData.name = getInputValueById('#name');
