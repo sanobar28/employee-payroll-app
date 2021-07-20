@@ -23,6 +23,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     });
 
 
+    //date validation
     const year = document.getElementById('year')
     const month = document.getElementById('month')
     const day = document.getElementById('day')
@@ -107,7 +108,7 @@ const createEmployeePayroll = () => {
     employeePayrollData.salary = getInputValueById('#salary');
     employeePayrollData.note = getInputValueById('#notes');
     let date = getInputValueById('#day') + " " + getInputValueById('#month') + " " + getInputValueById('#year');
-    employeePayrollData.date = Date.parse(date);
+    employeePayrollData.startDate = Date.parse(date);
     alert(employeePayrollData.toString());
     return employeePayrollData;
 }

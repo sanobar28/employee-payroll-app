@@ -28,6 +28,7 @@ const getEmployeePayrollDataFromStorage = () => {
 function createInnerHtml() {
     const headerHtml = `<tr><th></th><th>Name</th><th>Gender</th><th>Department</th>
            <th>Salary</th><th>start Date</th><th>Actions</th></tr>`
+
        if(empPayrollList.length == 0) return;   
        let innerHtml = `${headerHtml}`
        for (const empPayrollData of empPayrollList) {
@@ -38,7 +39,7 @@ function createInnerHtml() {
            <td>${empPayrollData._gender}</td>
            <td>${getDeptHtml(empPayrollData._department)}</td>
            <td>${empPayrollData._salary}</td>
-           <td>${empPayrollData._startDate}</td>
+           <td>${getDate(empPayrollData._startDate)}</td>
            <td>
                <img id="1" name="${empPayrollData._id}" onclick="remove(this)" alt="delete" width="30px" src="../assets/icons/delete-black-18dp.svg">
                <img id="1" name="${empPayrollData._id}" onclick="update(this)" alt="edit" width="30px" src="../assets/icons/create-black-18dp.svg  ">
@@ -47,6 +48,31 @@ function createInnerHtml() {
        }
        document.querySelector('#display').innerHTML = innerHtml
 }
+
+
+/**
+ * Get date helper function
+ * @param {*} date 
+ * @returns 
+ */
+const getDate = (date) => {
+    let temp = date;
+    const d = new Date(temp);
+    const months = ["Jan","Feb","Mar","April","May","June","July","Aug","Sep","Oct","Nov","Dec"];
+    return  d.getDay() + " - " + months[d.getMonth()] + " - " + d.getFullYear();
+}
+
+
+//Display Employee Details from JSON Object including the Department
+function getDeptHtml(deptList) {
+    let deptHtml = ''
+    for (const dept of deptList) {
+        deptHtml = `${deptHtml} <div class='dept-label'>${dept}</div>`
+    }
+    return deptHtml
+}
+
+
 
 /**
  * UC16 To view Employee Payroll details in a Tabular Format from JSON Object.
@@ -83,12 +109,3 @@ function createInnerHtml() {
     return empPayrollListLocal
 } 
 */
-
-//Display Employee Details from JSON Object including the Department
-function getDeptHtml(deptList) {
-    let deptHtml = ''
-    for (const dept of deptList) {
-        deptHtml = `${deptHtml} <div class='dept-label'>${dept}</div>`
-    }
-    return deptHtml
-}
