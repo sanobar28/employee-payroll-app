@@ -1,27 +1,26 @@
 //Event Listner for salary
-window.addEventListener('DOMContentLoaded', (event) => {
-    const name = document.querySelector('#name');
-    const textError = document.querySelector('.text-error');
-    name.addEventListener('input', function () {
+window.addEventListener("DOMContentLoaded", (event) => {
+    const name = document.querySelector("#name");
+    const textError = document.querySelector(".text-error");
+    name.addEventListener("input", function () {
         if (name.value.length == 0) {
             textError.textContent = "";
             return;
         }
         try {
-            (new EmployeePayrollData).name = name.value;;
+            (new EmployeePayrollData()).name = name.value;
             textError.textContent = "";
         } catch (e) {
             textError.textContent = e;
         }
     });
 
-    const salary = document.querySelector('#salary');
-    const output = document.querySelector('.salary-output');
+    const salary = document.querySelector("#salary");
+    const output = document.querySelector(".salary-output");
     output.textContent = salary.value;
-    salary.addEventListener('input', function () {
+    salary.addEventListener("input", function () {
         output.textContent = salary.value;
     });
-
 
     //date validation
     const year = document.getElementById('year')
@@ -71,25 +70,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
 const save = () => {
     try {
         let employeePayrollData = createEmployeePayroll();
+        alert(createEmployeePayroll());
         createAndUpadateStorage(employeePayrollData);
     } catch (e) {
         return;
     }
-}
-
-/**
- * UC12 to save the Employee Payroll Object to Local Storage.
- */
-
-function createAndUpadateStorage(employeePayrollData) {
-    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
-    if (employeePayrollList != undefined) {
-        employeePayrollList.push(employeePayrollData);
-    } else {
-        employeePayrollList = [employeePayrollData]
-    }
-    alert(employeePayrollList);
-    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList))
 }
 
 //UC11 create object continued
@@ -107,11 +92,28 @@ const createEmployeePayroll = () => {
     employeePayrollData.department = getSelectedValues('[name=department]');
     employeePayrollData.salary = getInputValueById('#salary');
     employeePayrollData.note = getInputValueById('#notes');
-    let date = getInputValueById('#day') + " " + getInputValueById('#month') + " " + getInputValueById('#year');
-    employeePayrollData.startDate = Date.parse(date);
+    let currdate = getInputValueById('#day') + " " + getInputValueById('#month') + " " + getInputValueById('#year');
+    employeePayrollData.startDate = currdate
+    employeePayrollData.id = Date.parse(new Date());
     alert(employeePayrollData.toString());
     return employeePayrollData;
 }
+
+/**
+ * UC12 to save the Employee Payroll Object to Local Storage.
+ */
+
+function createAndUpadateStorage(employeePayrollData) {
+    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+    if (employeePayrollList != null) {
+        employeePayrollList.push(employeePayrollData);
+    } else {
+        employeePayrollList = [employeePayrollData]
+    }
+    alert(employeePayrollList);
+    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList));
+}
+
 
 const getSelectedValues = (propertyValue) => {
     let allItems = document.querySelectorAll(propertyValue);
