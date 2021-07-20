@@ -88,41 +88,14 @@ const remove = (node) => {
     createInnerHtml();
 }
 
+//UC19 to Update an Employee Payroll details.
+const update = (node) => {
 
+    let empPayrollData = empPayrollList.find(empData => empData._id = node.id);
 
+    if (!empPayrollData) return;
 
-/**
- * UC16 To view Employee Payroll details in a Tabular Format from JSON Object.
- */
+    localStorage.setItem('editEmp', JSON.stringify(empPayrollData));
 
-/* const createEmployeePayrollJSON = () => {
-    let empPayrollListLocal = [
-        {
-            _name: 'Mohan Roy',
-            _gender: 'male',
-            _department: [
-                'Engineering', 'Hr'
-            ],
-            _salary: '400000',
-            _startDate: '21 May 2019',
-            _note: '',
-            _id: new Date().getTime(),
-            _profilePic: '../Assets/profile-images/Ellipse -2.png'
-        },
-        {
-            _profilePic: '../assets/profile-images/Ellipse -1.png',
-            _name: 'Sanobar Mujawar',
-            _gender: 'female',
-            _department: [
-                'Hr', 'Sale'
-            ],
-            _salary: '200000',
-            _startDate: '20 Feb 2020',
-            _note: '',
-            _id: new Date().getTime(),
-
-        }
-    ]
-    return empPayrollListLocal
-} 
-*/
+    window.location.replace(site_properties.add_emp_payroll_page);
+}
