@@ -7,9 +7,13 @@
 let empPayrollList;
 window.addEventListener('DOMContentLoaded', (event) => {
     empPayrollList = getEmployeePayrollDataFromStorage();
-    document.querySelector(".emp-count").textContent = empPayrollList.length;
+    // document.querySelector(".emp-count").textContent = empPayrollList.length;
+    let element = document.querySelector(".emp-count");
+    if (element) {
+        element.textContent = empPayrollList.length;
+    }
     createInnerHtml();
-    localStorage.removeItem('editEmp');
+    localStorage.removeItem("editEmp");
 });
 
 const getEmployeePayrollDataFromStorage = () => {
@@ -25,7 +29,7 @@ const getEmployeePayrollDataFromStorage = () => {
  *  Template literals can contain placeholders. These are
  *  indicated by the dollar sign and curly braces  
  */
-function createInnerHtml() {
+createInnerHtml = () => {
     const headerHtml = `<tr><th></th><th>Name</th><th>Gender</th><th>Department</th>
            <th>Salary</th><th>start Date</th><th>Actions</th></tr>`
 
@@ -91,11 +95,9 @@ const remove = (node) => {
 //UC19 to Update an Employee Payroll details.
 const update = (node) => {
 
-    let empPayrollData = empPayrollList.find(empData => empData._id = node.id);
+    let empPayrollData = empPayrollList.find((empData) => empData._id == node.id);
 
     if (!empPayrollData) return;
-
     localStorage.setItem('editEmp', JSON.stringify(empPayrollData));
-
     window.location.replace(site_properties.add_emp_payroll_page);
 }

@@ -7,4 +7,4 @@ const stringifyDate = (date) => {
     const newDate = !date ? "undefined" :
         new Date(Date.parse(date)).toLocaleDateString('en-GB', options);
     return newDate;
-}
+};
